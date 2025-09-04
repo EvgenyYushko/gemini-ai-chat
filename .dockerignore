@@ -1,0 +1,20 @@
+# Зависимости и артефакты сборки
+node_modules
+dist
+npm-debug.log
+
+# Файлы системы контроля версий
+.git
+.gitignore
+
+# Файлы конфигурации Docker
+Dockerfile
+.dockerignore
+entrypoint.sh
+nginx.conf
+
+# Документация и локальные конфиги
+README.md
+vite.config.ts
+tsconfig.json
+metadata.json
