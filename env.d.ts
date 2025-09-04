@@ -1,2 +1,9 @@
-// Fix: The reference to "vite/client" was causing a type error and has been removed.
-// The Window.env interface is no longer needed as the API key is now read from process.env.
+// Этот файл сообщает TypeScript о существовании глобального объекта `window.env`,
+// который создается скриптом entrypoint.sh во время выполнения контейнера.
+
+// Расширяем стандартный интерфейс Window, добавляя в него наше свойство `env`.
+interface Window {
+  env: {
+    API_KEY?: string; // API_KEY является строкой и может быть не определен.
+  };
+}
