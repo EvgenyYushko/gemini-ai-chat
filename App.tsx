@@ -12,6 +12,12 @@ import ChatInput from './components/ChatInput';
 
 // Главный компонент приложения.
 function App() {
+
+  const apiKey = import.meta.env.VITE_API_KEY;
+
+  // Теперь вы можете использовать переменную apiKey для ваших запросов
+  console.log("Мой ключ API:", apiKey);
+  
   // Управление состоянием с помощью хуков useState.
   // 'chat' хранит объект сеанса чата с Gemini API.
   const [chat, setChat] = useState<Chat | null>(null);
