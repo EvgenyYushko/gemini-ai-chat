@@ -2,11 +2,14 @@
 import { GoogleGenAI, Chat } from "@google/genai";
 
 // Получаем API-ключ из глобального объекта window, который создается скриптом entrypoint.sh
-const apiKey = (window as any).env?.API_KEY;
+const apiKey = import.meta.env.VITE_API_KEY;
+
+// Теперь вы можете использовать переменную apiKey для ваших запросов
+console.log("Мой ключ API:", apiKey);
 
 // Проверяем, был ли ключ предоставлен. Если нет, выбрасываем ошибку.
 if (!apiKey) {
-  throw new Error("API key is not configured. Please set the API_KEY environment variable in your hosting service.");
+  throw new Error("API key is not configured. Please set the VITE_API_KEY environment variable in your hosting service.");
 }
 
 // Создаем экземпляр клиента GoogleGenAI, передавая ему API-ключ.
