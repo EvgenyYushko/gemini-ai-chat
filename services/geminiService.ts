@@ -2,7 +2,9 @@
 import { GoogleGenAI, Chat } from "@google/genai";
 
 // Получаем API-ключ из глобального объекта window, который создается скриптом entrypoint.sh
-const apiKey = import.meta.env.VITE_API_KEY;
+// const apiKey = import.meta.env.VITE_API_KEY;
+
+const apiKey = 'AIzaSyDCpnSKTcxoceA_cXw1i7MdwLgOArqowq4';
 
 // Теперь вы можете использовать переменную apiKey для ваших запросов
 console.log("Мой ключ API:", apiKey);
