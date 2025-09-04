@@ -1,22 +1,10 @@
 // Импортируем необходимые классы из библиотеки Google GenAI
 import { GoogleGenAI, Chat } from "@google/genai";
 
-// Получаем API-ключ из переменных окружения.
-// Переменные окружения — это безопасный способ хранить секретные данные,
-// такие как ключи API, не вставляя их напрямую в код.
-// В Vite мы настроили доступ к process.env в файле vite.config.ts.
-const apiKey = process.env.API_KEY;
-
-// Проверяем, был ли предоставлен API-ключ.
-if (!apiKey) {
-  // Если ключ отсутствует, выбрасываем ошибку, чтобы предотвратить запуск приложения
-  // без необходимой конфигурации.
-  throw new Error("API_KEY not found. Please set the API_KEY environment variable.");
-}
-
-// Создаем экземпляр клиента GoogleGenAI, передавая ему наш API-ключ.
-// Этот объект будет использоваться для всех взаимодействий с Gemini API.
-const ai = new GoogleGenAI({ apiKey });
+// Fix: Initialize GoogleGenAI with API key from environment variables as per guidelines.
+// Создаем экземпляр клиента GoogleGenAI, передавая ему API-ключ из `process.env.API_KEY`.
+// Предполагается, что эта переменная окружения настроена и доступна.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
 
 // Экспортируем функцию для создания нового сеанса чата.
 export function createChat(): Chat {
