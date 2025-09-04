@@ -1,21 +1,21 @@
 #!/bin/sh
 
-# Устанавливаем путь для файла конфигурации в корневой папке Nginx
+# Путь к файлу, который мы будем создавать
 ENV_JS_FILE=/usr/share/nginx/html/env.js
 
-# Создаем пустой файл, чтобы избежать ошибок, если переменная не установлена
+# Сначала создаем пустой объект, чтобы приложение не падало, если ключ не найден
 echo "window.env = {};" > $ENV_JS_FILE
 
-# Проверяем, установлена ли переменная API_KEY
+# Проверяем, существует ли переменная окружения API_KEY
 if [ -n "$API_KEY" ]; then
-  # Если да, создаем файл env.js и записываем в него ключ
+  # Если да, дописываем ключ в наш файл
   echo "window.env.API_KEY = \"${API_KEY}\";" >> $ENV_JS_FILE
-  echo "API_KEY has been set."
+  echo "Entrypoint: API_KEY has been injected into env.js"
 else
   # Если нет, выводим предупреждение в логи
-  echo "Warning: API_KEY environment variable is not set."
+  echo "Entrypoint: Warning! API_KEY environment variable not set."
 fi
 
-# Эта команда запускает Nginx и держит его на переднем плане,
-# что необходимо для работы контейнера.
+# Эта команда запускает Nginx и оставляет его работать на переднем плане.
+# Это необходимо, чтобы контейнер не завершил свою работу сразу после запуска скрипта.
 exec nginx -g 'daemon off;'
