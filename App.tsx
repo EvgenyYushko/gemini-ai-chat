@@ -1,5 +1,5 @@
 // Импортируем хуки React для управления состоянием (useState), жизненным циклом (useEffect, useCallback) и ссылками на DOM-элементы (useRef).
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 // Импортируем типы из библиотеки @google/genai для строгой типизации.
 import type { Chat } from '@google/genai';
 // Импортируем нашу функцию для создания чата.
