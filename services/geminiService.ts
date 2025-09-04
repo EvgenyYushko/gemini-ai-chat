@@ -1,10 +1,16 @@
 // Импортируем необходимые классы из библиотеки Google GenAI
 import { GoogleGenAI, Chat } from "@google/genai";
 
-// Fix: Initialize GoogleGenAI with API key from environment variables as per guidelines.
-// Создаем экземпляр клиента GoogleGenAI, передавая ему API-ключ из `process.env.API_KEY`.
-// Предполагается, что эта переменная окружения настроена и доступна.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+// Получаем API-ключ из глобального объекта window, который создается скриптом entrypoint.sh
+const apiKey = (window as any).env?.API_KEY;
+
+// Проверяем, был ли ключ предоставлен. Если нет, выбрасываем ошибку.
+if (!apiKey) {
+  throw new Error("API key is not configured. Please set the API_KEY environment variable in your hosting service.");
+}
+
+// Создаем экземпляр клиента GoogleGenAI, передавая ему API-ключ.
+const ai = new GoogleGenAI({ apiKey });
 
 // Экспортируем функцию для создания нового сеанса чата.
 export function createChat(): Chat {
